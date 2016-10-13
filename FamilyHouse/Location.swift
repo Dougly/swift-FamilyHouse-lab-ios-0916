@@ -13,8 +13,5 @@ struct Location {
     let address: Int
     let show: TVShow
     
-    func canReportToLocation (location: Location) -> Bool {
-        return self.show == location.show
-    }
 }
 

@@ -22,7 +22,7 @@ class LocationsTableView: UIViewController, UITableViewDataSource, UITableViewDe
     
     func createLocations () {
         let location1 = Location(name: "Brooklyn", address: 1111, show: .familyMatters)
-        let location2 = Location(name: "SanFrancisco", address: 222222, show: .fullHouse)
+        let location2 = Location(name: "San Francisco", address: 222222, show: .fullHouse)
         
         locations.append(location1)
         locations.append(location2)
@@ -41,9 +41,19 @@ class LocationsTableView: UIViewController, UITableViewDataSource, UITableViewDe
         cell.nameLabel.text = String(locations[indexPath.row].name)
         cell.showLabel.text = locations[indexPath.row].show.showAsString
         
-        
-        
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "pushToChars" {
+            let dest = segue.destination as! AllCharsCollectionView
+            let indexPath = addedTableView.indexPathForSelectedRow
+            
+            if let indexPath = indexPath {
+                dest.locationSelectedOnPreviousScreen = locations[indexPath.row]
+            }
+        }
     }
 }
 

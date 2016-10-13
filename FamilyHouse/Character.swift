@@ -21,5 +21,9 @@ class Character {
     
     }
     
+    func canVisitLocation (location: Location) -> Bool {
+        return self.castMemberOf == location.show
+    }
+    
 }
 
